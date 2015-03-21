@@ -25,6 +25,11 @@ app.use(sassMiddleware({
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/public'));
 
+// use days
+var days = require('./routes/days');
+
+app.use("/days", days);
+
 // serve root
 app.get('/', require('./routes'));
 
@@ -45,7 +50,7 @@ app.use(function(err, req, res, next) {
 });
 
 // listen on a port
-var port = 3000;
+var port = 4567;
 app.listen(port, function () {
 	console.log('The server is listening closely on port', port);
 });

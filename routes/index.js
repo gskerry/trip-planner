@@ -1,5 +1,4 @@
 var router = require('express').Router();
-
 var models = require('../models');
 
 router.get('/', function (req, res, next) {
@@ -15,5 +14,13 @@ router.get('/', function (req, res, next) {
 		});
 	});
 });
+
+router.get('/day', function (req, res, next) {
+
+	// var today = req.params.day
+	console.log("WLECOME TO TODAY");
+
+})
+
 
 module.exports = router;
