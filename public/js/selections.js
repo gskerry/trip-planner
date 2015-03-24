@@ -42,8 +42,9 @@ var addItemToList = function(type, activity) {
 
 $('.add-activity').on('click', function() {
 
-	//models
-	//find the correct select
+	// console.log("Add activity button was clicked.");
+	// models
+	// find the correct select
 	var $select = $(this).siblings('select')
 	var type = $(this).attr('data-type')
 	var id = $select.val()
@@ -56,6 +57,14 @@ $('.add-activity').on('click', function() {
 		currentDay[type].push(activity)	
 	}
 
+	// $.ajax({
+	//     type: 'VERB',
+	//     url: '/whatever/route',
+	//     data: someDataToSend,
+	//     success: function (responseData) {
+	//         // some code to run when the response comes back
+	//     }
+	// });
 
 	//views
 	

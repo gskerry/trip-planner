@@ -40,6 +40,17 @@ $addDay.on('click', function() {
 
   days.push(newDay)
 
+  //Add a new day to the DaySchema using Mongoose
+
+  $.ajax({
+    type: 'POST',
+    url: '/days',
+    data: "FOO",
+    success: function (responseData) {
+        console.log("The AJAX request worked!")
+    }
+});
+
 
   var newDayBtn = templates.get('day-btn')
     .text(newDay.dayNum)

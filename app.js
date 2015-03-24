@@ -25,13 +25,12 @@ app.use(sassMiddleware({
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/public'));
 
-// use days
-var days = require('./routes/days');
-
-app.use("/days", days);
-
 // serve root
 app.get('/', require('./routes'));
+
+// use days
+var days = require('./routes/days');
+app.use("/days", days);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
