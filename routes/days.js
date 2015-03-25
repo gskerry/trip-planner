@@ -52,13 +52,15 @@ dayRouter.delete('/:id', function (req, res, next) {
 	// deletes a particular day
 });
 
+
 /*dayRouter.use('/:id', attractionRouter);
 
 // POST /days/:id/hotel
 attractionRouter.post('/hotel', function (req, res, next) {
 	// creates a reference to the hotel
-});
+});*/
 
+/*
 // DELETE /days/:id/hotel
 attractionRouter.delete('/hotel', function (req, res, next) {
 	// deletes the reference of the hotel
@@ -82,6 +84,7 @@ attractionRouter.post('/thingsToDo', function (req, res, next) {
 // DELETE /days/:dayId/thingsToDo/:thingId
 attractionRouter.delete('/thingsToDo/:id', function (req, res, next) {
 // deletes a reference to a thing to do
-});*/
+});
+*/
 
 module.exports = dayRouter;

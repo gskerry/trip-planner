@@ -29,6 +29,7 @@ var getListByType = function(type) {
 var addItemToList = function(type, activity) {
 	if(!activity) return;
 	var list = getListByType(type)
+	console.log("list: ",list)
 
 	var template = templates.get('itinerary-item')
 	  .appendTo(list)
@@ -48,23 +49,33 @@ $('.add-activity').on('click', function() {
 	var $select = $(this).siblings('select')
 	var type = $(this).attr('data-type')
 	var id = $select.val()
+	console.log(type);
+	console.log(id);
 
-	var activity = getActivity(type, id)
-	if(type === "hotels"){
-		type = "hotel"
-		currentDay.hotel = activity	
-	} else {
-		currentDay[type].push(activity)	
-	}
+	/*
+	Take ID
+	Hit URI based on ID?
+	Return object from mongo
+	*/
 
-	// $.ajax({
-	//     type: 'VERB',
-	//     url: '/whatever/route',
-	//     data: someDataToSend,
-	//     success: function (responseData) {
-	//         // some code to run when the response comes back
-	//     }
-	// });
+	$.ajax({
+	    type: 'POST',
+	    url: '/day/' + [day_id_from_mongo] +'/' + type,
+	    data: someDataToSend,
+	    success: function (responseData) {
+	        // some code to run when the response comes back
+	    }
+	});
+
+
+	// var activity = getActivity(type, id)
+	// if(type === "hotels"){
+	// 	type = "hotel"
+	// 	currentDay.hotel = activity	
+	// } else {
+	// 	currentDay[type].push(activity)	
+	// }
+
 
 	//views
 	

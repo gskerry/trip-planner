@@ -1,9 +1,6 @@
 var days = [];
 var currentDay;
 
-
-
-
 var $addDay = $('#add-day')
 var $dayTitle = $('#day-title span:first')
 
@@ -46,7 +43,7 @@ $addDay.on('click', function() {
     type: 'POST',
     url: '/days',
     data: {
-      number: 1
+      number: newDay
       // hotel: ,
       // restaurants: ,
       // thingsToDo:
