@@ -45,7 +45,12 @@ $addDay.on('click', function() {
   $.ajax({
     type: 'POST',
     url: '/days',
-    data: "FOO",
+    data: {
+      number: 1
+      // hotel: ,
+      // restaurants: ,
+      // thingsToDo:
+    },
     success: function (responseData) {
         console.log("The AJAX request worked!")
     }

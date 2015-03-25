@@ -2,7 +2,7 @@ var router = require('express').Router();
 var models = require('../models');
 
 // var days = require('./days');
-// app.use("/days", days);
+// router.use("/days", days);
 
 
 router.get('/', function (req, res, next) {

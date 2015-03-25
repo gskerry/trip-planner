@@ -1,4 +1,5 @@
 var dayRouter = require('express').Router();
+var bodyParser = require('body-parser');
 var models = require('../models');
 
 /*dayRouter.get('/days/:day', function (req, res, next) {
@@ -30,16 +31,20 @@ dayRouter.get('/', function (req, res, next) {
 dayRouter.post('/', function (req, res, next) {
 	// creates a new day and serves it as json
 	console.log("You've reached the days route via POST")	
-
-
-	var day = new models.Day({ 'number': 1 });
+	var day = new models.Day({"number": req.body.number});
 	day.save();
 	console.log("Day saved!")
 });
 
 // GET /days/:id
 dayRouter.get('/:id', function (req, res, next) {
+	var id = req.params.id
+	console.log(id);
 	// serves a particular day as json
+	var dayObject = models.Day.findById(id).exec(function (err, day) {
+		console.log(day);
+		res.json(day);
+	});
 });
 
 // DELETE /days/:id

@@ -1,6 +1,7 @@
 var express = require('express'),
 	logger = require('morgan'),
 	swig = require('swig'),
+    bodyParser = require('body-parser'),
 	sassMiddleware = require('node-sass-middleware');
 
 var app = express();
@@ -24,6 +25,9 @@ app.use(sassMiddleware({
 // serve static files
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/public'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // serve root
 app.get('/', require('./routes'));
