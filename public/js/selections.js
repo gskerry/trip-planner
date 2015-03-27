@@ -42,7 +42,7 @@ var addItemToList = function(type, activity) {
 }
 
 $('.add-activity').on('click', function() {
-
+	
 	// console.log("Add activity button was clicked.");
 	// models
 	// find the correct select

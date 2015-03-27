@@ -29,13 +29,15 @@ var switchCurrentDay = function(day, $dayBtn) {
 $addDay.on('click', function() {
   //"model-y"
   var newDay = {
+    number: days.length + 1,
+    hotel: null,
     restaurants: [],
     thingsToDo: [],
-    hotel: null,
-    dayNum: days.length + 1
   }
 
-  days.push(newDay)
+  days.push(newDay);
+
+  // var num = newDay.number
 
   //Add a new day to the DaySchema using Mongoose
 
@@ -43,19 +45,36 @@ $addDay.on('click', function() {
     type: 'POST',
     url: '/days',
     data: {
-      number: newDay
+      number: newDay.number
       // hotel: ,
       // restaurants: ,
       // thingsToDo:
     },
     success: function (responseData) {
-        console.log("The AJAX request worked!")
+        console.log(responseData);
     }
-});
+  });
+
+  var dayId;
+
+  $.ajax({
+      type: 'GET',
+      url: '/days/'+newDay.number,
+      /*data: {
+        number: newDay.number
+        // hotel: ,
+        // restaurants: ,
+        // thingsToDo:
+      },*/
+      success: function (responseData) {
+          dayId = responseData;
+          console.log("OMG THE ID IS " + dayId);
+      }
+    });
 
 
   var newDayBtn = templates.get('day-btn')
-    .text(newDay.dayNum)
+    .text(newDay.number)
     .insertBefore($addDay)
     .on('click', function() {
       switchCurrentDay(newDay, $(this))

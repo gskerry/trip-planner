@@ -33,19 +33,31 @@ dayRouter.post('/', function (req, res, next) {
 	console.log("You've reached the days route via POST")	
 	var day = new models.Day({"number": req.body.number});
 	day.save();
-	console.log("Day saved!")
+	res.send("Day successfully saved!")
 });
 
 // GET /days/:id
-dayRouter.get('/:id', function (req, res, next) {
+/*dayRouter.get('/:id', function (req, res, next) {
 	var id = req.params.id
-	console.log(id);
+	// console.log(id);
 	// serves a particular day as json
 	var dayObject = models.Day.findById(id).exec(function (err, day) {
-		console.log(day);
+		// console.log(day);
 		res.json(day);
 	});
+});*/
+// ALT
+dayRouter.get('/:num', function (req, res, next) {
+	var num = req.params.num
+	// console.log(id);
+	// serves a particular day as json
+	var dayObject = models.Day.find({ 'number' : num }).exec(function (err, day) {
+			currentDayId = day[0]._id;
+			res.send(currentDayId);
+		});
 });
+
+
 
 // DELETE /days/:id
 dayRouter.delete('/:id', function (req, res, next) {
