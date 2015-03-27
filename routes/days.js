@@ -2,6 +2,10 @@ var dayRouter = require('express').Router();
 var bodyParser = require('body-parser');
 var models = require('../models');
 
+// Could define individually too... 
+// var Day = require('../models').Day;
+
+
 /*dayRouter.get('/days/:day', function (req, res, next) {
 
 	var today = req.params.day
@@ -33,6 +37,9 @@ dayRouter.post('/', function (req, res, next) {
 	console.log("You've reached the days route via POST")	
 	var day = new models.Day({"number": req.body.number});
 	day.save();
+
+	// models.Day.creat()... creates var and runs day.save() in one step
+
 	res.send("Day successfully saved!")
 });
 
@@ -64,13 +71,17 @@ dayRouter.delete('/:id', function (req, res, next) {
 	// deletes a particular day
 });
 
+// Catches anything that has path with MORE than just /:id
+dayRouter.use('/:id', attractionRouter);
 
-/*dayRouter.use('/:id', attractionRouter);
+
 
 // POST /days/:id/hotel
 attractionRouter.post('/hotel', function (req, res, next) {
 	// creates a reference to the hotel
-});*/
+	res.send("You've reached the hotels route via POST")
+	res.json("You've reached the hotels route via POST")	
+});
 
 /*
 // DELETE /days/:id/hotel

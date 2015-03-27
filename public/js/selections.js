@@ -42,7 +42,7 @@ var addItemToList = function(type, activity) {
 }
 
 $('.add-activity').on('click', function() {
-	
+
 	// console.log("Add activity button was clicked.");
 	// models
 	// find the correct select
@@ -52,18 +52,21 @@ $('.add-activity').on('click', function() {
 	console.log(type);
 	console.log(id);
 
+	var currentDayId = $(".current-day").attr('data-id');
+	console.log("DONT IGNORE ME:" + currentDayId);
+
 	/*
-	Take ID
+	Take ID of activity
 	Hit URI based on ID?
 	Return object from mongo
 	*/
 
 	$.ajax({
 	    type: 'POST',
-	    url: '/day/' + [day_id_from_mongo] +'/' + type,
-	    data: someDataToSend,
+	    url: '/days/' + currentDayId +'/' + type,
+	    data: "someDataToSend",
 	    success: function (responseData) {
-	        // some code to run when the response comes back
+	        console.log("OMG OMG OMG " + responseData);
 	    }
 	});
 

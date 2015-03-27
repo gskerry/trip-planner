@@ -1,5 +1,6 @@
 var days = [];
 var currentDay;
+var currentDayId;
 
 var $addDay = $('#add-day')
 var $dayTitle = $('#day-title span:first')
@@ -7,6 +8,7 @@ var $dayTitle = $('#day-title span:first')
 var switchCurrentDay = function(day, $dayBtn) {
   clearMap()
   currentDay = day
+
   $dayTitle.text('Day ' + day.dayNum)
   $('.day-btn').removeClass('current-day')
   $dayBtn.addClass('current-day')
@@ -69,18 +71,31 @@ $addDay.on('click', function() {
       success: function (responseData) {
           dayId = responseData;
           console.log("OMG THE ID IS " + dayId);
+
+          var newDayBtn = templates.get('day-btn')
+          .text(newDay.number)
+          .attr("data-id", dayId)
+          .insertBefore($addDay)
+          .on('click', function() {
+            switchCurrentDay(newDay, $(this))
+            currentDayId = $(this).attr('data-id')
+            console.log("THE CURRENT DAY IS: ",currentDayId);
+          })
+
+        switchCurrentDay(newDay, newDayBtn)
+
       }
     });
 
-
-  var newDayBtn = templates.get('day-btn')
+/*  var newDayBtn = templates.get('day-btn')
     .text(newDay.number)
+    .attr("data-id", dayId)
     .insertBefore($addDay)
     .on('click', function() {
       switchCurrentDay(newDay, $(this))
     })
 
-  switchCurrentDay(newDay, newDayBtn)
+  switchCurrentDay(newDay, newDayBtn)*/
 })
 
 
